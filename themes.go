@@ -139,6 +139,9 @@ type Theme struct {
 	TimeFg uint8
 	TimeBg uint8
 
+	TmuxFg uint8
+	TmuxBg uint8
+
 	ShellVarFg uint8
 	ShellVarBg uint8
 
@@ -150,8 +153,8 @@ type Theme struct {
 	NodeVersionFg uint8
 	NodeVersionBg uint8
 
-	RvmFg        uint8
-	RvmBg        uint8
+	RvmFg uint8
+	RvmBg uint8
 
 	LoadFg           uint8
 	LoadBg           uint8
@@ -167,6 +170,6 @@ type Theme struct {
 
 	ViModeCommandFg uint8
 	ViModeCommandBg uint8
-	ViModeInsertFg uint8
-	ViModeInsertBg uint8
+	ViModeInsertFg  uint8
+	ViModeInsertBg  uint8
 }

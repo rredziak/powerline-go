@@ -84,12 +84,12 @@ var defaults = Config{
 			RepoConflicted: "\u273C",
 			RepoStashed:    "\u2691",
 
-			DotEnvIndicator:    "\u2235",
-			KubeIndicator:      "\u2388",
-			NixShellIndicator:  "\uF313",
-			NodeIndicator:      "\u2B22",
-			RvmIndicator:       "\uE92B",
-			VenvIndicator:      "\uE235",
+			DotEnvIndicator:   "\u2235",
+			KubeIndicator:     "\u2388",
+			NixShellIndicator: "\uF313",
+			NodeIndicator:     "\u2B22",
+			RvmIndicator:      "\uE92B",
+			VenvIndicator:     "\uE235",
 		},
 		"patched": {
 			Lock:                 "\uE0A2",
@@ -110,12 +110,12 @@ var defaults = Config{
 			RepoConflicted: "\u273C",
 			RepoStashed:    "\u2691",
 
-			DotEnvIndicator:    "\u2235",
-			KubeIndicator:      "\u2388",
-			NixShellIndicator:  "\uF313",
-			NodeIndicator:      "\u2B22",
-			RvmIndicator:       "\uE92B",
-			VenvIndicator:      "\uE235",
+			DotEnvIndicator:   "\u2235",
+			KubeIndicator:     "\u2388",
+			NixShellIndicator: "\uF313",
+			NodeIndicator:     "\u2B22",
+			RvmIndicator:      "\uE92B",
+			VenvIndicator:     "\uE235",
 		},
 		"flat": {
 			RepoDetached:   "\u2693",
@@ -127,12 +127,12 @@ var defaults = Config{
 			RepoConflicted: "\u273C",
 			RepoStashed:    "\u2691",
 
-			DotEnvIndicator:    "\u2235",
-			KubeIndicator:      "\u2388",
-			NixShellIndicator:  "\uF313",
-			NodeIndicator:      "\u2B22",
-			RvmIndicator:       "\uE92B",
-			VenvIndicator:      "\uE235",
+			DotEnvIndicator:   "\u2235",
+			KubeIndicator:     "\u2388",
+			NixShellIndicator: "\uF313",
+			NodeIndicator:     "\u2B22",
+			RvmIndicator:      "\uE92B",
+			VenvIndicator:     "\uE235",
 		},
 	},
 	Shells: ShellMap{
@@ -268,6 +268,9 @@ var defaults = Config{
 
 			TimeFg: 15,
 			TimeBg: 236,
+
+			TmuxFg: 7,
+			TmuxBg: 50,
 
 			ShellVarFg: 52,
 			ShellVarBg: 11,
@@ -648,6 +651,9 @@ var defaults = Config{
 			TimeFg: 236,
 			TimeBg: 15,
 
+			TmuxFg: 7,
+			TmuxBg: 50,
+
 			ShEnvFg: 130,
 			ShEnvBg: 15,
 
@@ -987,6 +993,8 @@ var defaults = Config{
 			PlEnvBg:            4,
 			TimeFg:             15,
 			TimeBg:             0,
+			TmuxFg:             7,
+			TmuxBg:             50,
 			ShellVarFg:         1,
 			ShellVarBg:         11,
 			ShEnvFg:            15,
@@ -1328,6 +1336,8 @@ var defaults = Config{
 			PlEnvBg:            4,
 			TimeFg:             15,
 			TimeBg:             0,
+			TmuxFg:             7,
+			TmuxBg:             50,
 			ShellVarFg:         1,
 			ShellVarBg:         11,
 			ShEnvFg:            15,
@@ -1670,6 +1680,8 @@ var defaults = Config{
 			PlEnvBg:            gruvbox_faded_green, // match virtualenv
 			TimeFg:             gruvbox_light2,
 			TimeBg:             gruvbox_dark4,
+			TmuxFg:             gruvbox_light2,
+			TmuxBg:             gruvbox_neutral_aqua,
 			ShellVarFg:         gruvbox_light0,       // match ssh-fg
 			ShellVarBg:         gruvbox_faded_purple, // match ssh-bg
 			NodeFg:             gruvbox_light0,       // match virtualenv
