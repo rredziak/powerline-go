@@ -90,6 +90,8 @@ var defaults = Config{
 			NodeIndicator:     "\u2B22",
 			RvmIndicator:      "\uE92B",
 			VenvIndicator:     "\uE235",
+
+			Tmux: "TMUX",
 		},
 		"patched": {
 			Lock:                 "\uE0A2",
@@ -116,6 +118,8 @@ var defaults = Config{
 			NodeIndicator:     "\u2B22",
 			RvmIndicator:      "\uE92B",
 			VenvIndicator:     "\uE235",
+
+			Tmux: "\u29C9",
 		},
 		"flat": {
 			RepoDetached:   "\u2693",
