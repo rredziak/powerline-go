@@ -27,7 +27,9 @@ type SymbolTemplate struct {
 	RvmIndicator      string
 	VenvIndicator     string
 
-	Tmux string
+	Tmux    string
+	TmuxOff string
+	TmuxOn  string
 }
 
 // Theme definitions

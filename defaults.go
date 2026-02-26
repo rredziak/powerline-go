@@ -91,7 +91,9 @@ var defaults = Config{
 			RvmIndicator:      "\uE92B",
 			VenvIndicator:     "\uE235",
 
-			Tmux: "TMUX",
+			Tmux:    "TMUX",
+			TmuxOff: "off",
+			TmuxOn:  "on",
 		},
 		"patched": {
 			Lock:                 "\uE0A2",
@@ -119,7 +121,9 @@ var defaults = Config{
 			RvmIndicator:      "\uE92B",
 			VenvIndicator:     "\uE235",
 
-			Tmux: "\u29C9",
+			Tmux:    "\u29C9",
+			TmuxOff: "\u2B58",
+			TmuxOn:  "\u23FD",
 		},
 		"flat": {
 			RepoDetached:   "\u2693",

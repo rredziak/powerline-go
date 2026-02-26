@@ -10,6 +10,33 @@ import (
 	pwl "github.com/justjanne/powerline-go/powerline"
 )
 
+type TmuxState struct {
+	clients  int
+	sessions int
+	attached int
+	p        *powerline
+}
+
+func (ts *TmuxState) isOn() bool {
+	return ts.clients+ts.sessions+ts.attached > 0
+}
+
+func (ts *TmuxState) status() string {
+	var tOn string = fmt.Sprintf("%s %s", ts.p.symbols.Tmux, ts.p.symbols.TmuxOn)
+	var tOff string = fmt.Sprintf("%s %s", ts.p.symbols.Tmux, ts.p.symbols.TmuxOff)
+
+	if false { // if in full mode
+		tOn = fmt.Sprintf("%s c:%2d s:%2d a:%2d", ts.p.symbols.Tmux, ts.clients, ts.sessions, ts.attached)
+		tOff = ""
+	}
+
+	if ts.isOn() {
+		return tOn
+	}
+
+	return tOff
+}
+
 func runTmuxCmd(parameters ...string) (string, error) {
 	output, err := exec.Command("tmux", parameters...).Output()
 
@@ -33,65 +60,49 @@ func countLines(input string, countSum bool) (int, int) {
 
 		cntr++
 
-		if !countSum {
-			continue
+		if countSum {
+			val, _ := strconv.Atoi(l)
+			sum = +val
 		}
-
-		val, _ := strconv.Atoi(l)
-		sum = +val
 	}
 
 	return cntr, sum
 }
 
-func getClientNum() (int, error) {
+func updateClientNum(ts *TmuxState) {
 	output, err := runTmuxCmd("list-clients", "-F", "#{session_windows}")
 
-	if err != nil {
-		return 0, err
+	if err == nil {
+		cn, _ := countLines(output, false)
+		ts.clients = cn
 	}
-
-	clientNum, _ := countLines(output, false)
-
-	return clientNum, nil
 }
 
-func getSessionNum() (int, int, error) {
-
+func updateSessionNum(ts *TmuxState) {
 	output, err := runTmuxCmd("list-sessions", "-F", "#{session_attached}")
 
-	if err != nil {
-		return 0, 0, err
+	if err == nil {
+		sn, sa := countLines(output, true)
+		ts.sessions, ts.attached = sn, sa
 	}
-
-	sessionNum, sessionsAttached := countLines(output, true)
-	return sessionNum, sessionsAttached, nil
 }
 
 func segmentTmux(p *powerline) []pwl.Segment {
+	ts := &TmuxState{p: p}
 
-	if _, exists := os.LookupEnv("TMUX"); exists {
-		return []pwl.Segment{}
+	if _, exists := os.LookupEnv("TMUX"); !exists {
+		updateClientNum(ts)
+		updateSessionNum(ts)
+
+		if tc := ts.status(); len(tc) > 0 {
+			return []pwl.Segment{{
+				Name:       "tmux",
+				Content:    tc,
+				Foreground: p.theme.TmuxFg,
+				Background: p.theme.TmuxBg,
+			}}
+		}
 	}
 
-	clientNum, err := getClientNum()
-
-	if err != nil {
-		return []pwl.Segment{}
-	}
-
-	sessionNum, sessionsAttached, err := getSessionNum()
-
-	if err != nil {
-		return []pwl.Segment{}
-	}
-
-	tmuxContent := fmt.Sprintf("%s c:%2d s:%2d a:%2d", p.symbols.Tmux, clientNum, sessionNum, sessionsAttached)
-
-	return []pwl.Segment{{
-		Name:       "tmux",
-		Content:    tmuxContent,
-		Foreground: p.theme.TmuxFg,
-		Background: p.theme.TmuxBg,
-	}}
+	return []pwl.Segment{}
 }
