@@ -25,7 +25,7 @@ func (ts *TmuxState) status() string {
 	var tOn string = fmt.Sprintf("%s %s", ts.p.symbols.Tmux, ts.p.symbols.TmuxOn)
 	var tOff string = fmt.Sprintf("%s %s", ts.p.symbols.Tmux, ts.p.symbols.TmuxOff)
 
-	if false { // if in full mode
+	if !ts.p.cfg.SimpleTmux { // if in full mode
 		tOn = fmt.Sprintf("%s c:%2d s:%2d a:%2d", ts.p.symbols.Tmux, ts.clients, ts.sessions, ts.attached)
 		tOff = ""
 	}
